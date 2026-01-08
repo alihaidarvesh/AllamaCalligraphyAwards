@@ -5,7 +5,7 @@ const data = [
     award:"🥇 First Place",
     badge:"gold",
     winner:true,
-    image:"ALLAMACALLIGRAPHYAWARDS/B.png",
+    image:"B.png",
     scores:[9,10,9,9,9]
   },
   {
@@ -14,7 +14,7 @@ const data = [
     award:"🥈 Second (Joint)",
     badge:"silver",
     winner:true,
-    image:"ALLAMACALLIGRAPHYAWARDS/A.png",
+    image:"A.png",
     scores:[8,8,8,8,8]
   },
   {
@@ -23,7 +23,7 @@ const data = [
     award:"🥈 Second (Joint)",
     badge:"silver",
     winner:true,
-    image:"ALLAMACALLIGRAPHYAWARDS/C.png",
+    image:"C.png",
     scores:[9,9,8,8,6]
   }
 ];
