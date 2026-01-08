@@ -1,55 +1,81 @@
+/* ======================
+   COLOR VARIABLES
+====================== */
 :root {
   --gold: #facc15;
   --silver: #e5e7eb;
   --bronze: #fb923c;
+  --accent: #22d3ee;
+  --dark-bg: #020617;
+  --dark-card: #0f172a;
+  --light-bg: #fff7ed;
+  --light-card: #ffffff;
+}
+
+/* ======================
+   GLOBAL RESET
+====================== */
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  transition: background .3s, color .3s;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Arabic calligraphy texture (pure CSS pattern) */
+/* ======================
+   ARABIC TEXTURE (SUBTLE)
+====================== */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,.04) 2px, transparent 2px),
-    radial-gradient(circle at 80% 40%, rgba(255,255,255,.04) 2px, transparent 2px);
+    radial-gradient(circle at 25% 30%, rgba(255,255,255,.05) 2px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,.05) 2px, transparent 2px);
   background-size: 120px 120px;
-  opacity: .4;
+  opacity: 0.4;
   pointer-events: none;
 }
 
-/* DARK MODE */
+/* ======================
+   DARK / LIGHT MODES
+====================== */
 body.dark {
-  background: radial-gradient(circle at top, #1e293b, #020617);
+  background: radial-gradient(circle at top, #1e293b, var(--dark-bg));
   color: #e5e7eb;
 }
 
-/* LIGHT MODE */
 body.light {
-  background: linear-gradient(180deg, #fff7ed, #ffedd5);
+  background: linear-gradient(180deg, #fff7ed, var(--light-bg));
   color: #111827;
 }
 
+/* ======================
+   HEADER
+====================== */
 header {
   text-align: center;
-  padding: 30px 16px 20px;
+  padding: 32px 16px 22px;
 }
 
 header h1 {
   font-size: 30px;
+  margin-bottom: 6px;
   color: var(--gold);
+  letter-spacing: 0.5px;
 }
 
 header p {
   font-size: 14px;
-  opacity: .8;
+  opacity: 0.8;
 }
 
+/* ======================
+   CONTROLS (TABS + TOGGLE)
+====================== */
 .controls {
   margin-top: 16px;
   display: flex;
@@ -60,16 +86,16 @@ header p {
 
 .tabs {
   display: flex;
-  background: rgba(255,255,255,.08);
   border-radius: 999px;
   overflow: hidden;
+  background: rgba(255,255,255,.08);
 }
 
 .tab {
   border: none;
-  padding: 8px 16px;
-  cursor: pointer;
+  padding: 8px 18px;
   font-weight: 600;
+  cursor: pointer;
   background: transparent;
   color: inherit;
 }
@@ -80,38 +106,52 @@ header p {
 
 #themeToggle {
   border: none;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 999px;
-  cursor: pointer;
   font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, #22d3ee, #38bdf8);
+  color: #020617;
 }
 
+/* ======================
+   MAIN LAYOUT
+====================== */
 main {
   max-width: 900px;
   margin: auto;
   padding: 16px;
 }
 
+/* ======================
+   CARD
+====================== */
 .card {
   background: linear-gradient(160deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  border-radius: 20px;
+  border-radius: 22px;
   padding: 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 15px 35px rgba(0,0,0,.4);
+  margin-bottom: 20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.45);
   border: 1px solid rgba(255,255,255,.15);
+  position: relative;
 }
 
+/* ======================
+   WINNER GLOW
+====================== */
 .card.winner {
   border: 2px solid var(--gold);
-  animation: glow 2.5s infinite alternate;
+  animation: trophyGlow 2.5s infinite alternate;
 }
 
-/* Trophy glow animation */
-@keyframes glow {
-  from { box-shadow: 0 0 15px rgba(250,204,21,.3); }
-  to { box-shadow: 0 0 35px rgba(250,204,21,.8); }
+@keyframes trophyGlow {
+  from { box-shadow: 0 0 18px rgba(250,204,21,.35); }
+  to   { box-shadow: 0 0 38px rgba(250,204,21,.85); }
 }
 
+/* ======================
+   CARD TOP
+====================== */
 .top {
   display: flex;
   justify-content: space-between;
@@ -131,45 +171,80 @@ main {
   font-weight: 600;
 }
 
-.gold { color: var(--gold); }
+.gold   { color: var(--gold); }
 .silver { color: var(--silver); }
 .bronze { color: var(--bronze); }
 
 .score {
   font-size: 28px;
   font-weight: 800;
+  color: var(--accent);
 }
 
+/* ======================
+   ARTWORK IMAGE
+====================== */
+.artwork {
+  margin-top: 14px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 10px 28px rgba(0,0,0,.4);
+}
+
+.artwork img {
+  width: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* ======================
+   BUTTON
+====================== */
 button.view {
   margin-top: 14px;
   background: linear-gradient(135deg, #22d3ee, #38bdf8);
   color: #020617;
   border: none;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 10px 18px;
+  border-radius: 14px;
   font-weight: 700;
   cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
+button.view:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(56,189,248,.45);
+}
+
+/* ======================
+   DETAILS
+====================== */
 .details {
   display: none;
-  margin-top: 14px;
-  border-top: 1px dashed rgba(255,255,255,.2);
+  margin-top: 16px;
+  border-top: 1px dashed rgba(255,255,255,.25);
   padding-top: 12px;
 }
 
-.details.open { display: block; }
+.details.open {
+  display: block;
+}
 
 .row {
   display: flex;
   justify-content: space-between;
-  padding: 6px 0;
+  padding: 7px 0;
   font-size: 14px;
 }
 
+/* ======================
+   FOOTER
+====================== */
 footer {
   text-align: center;
   font-size: 12px;
-  opacity: .7;
-  padding: 30px;
+  opacity: 0.7;
+  padding: 30px 12px;
 }
