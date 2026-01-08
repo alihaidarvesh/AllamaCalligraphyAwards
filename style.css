@@ -1,0 +1,92 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  color: #222;
+}
+
+header {
+  padding: 32px 16px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+header p {
+  font-size: 14px;
+  color: #555;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.12);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.entry {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 12px;
+  background: #fde68a;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.score {
+  font-size: 24px;
+  font-weight: 700;
+  color: #b45309;
+}
+
+.details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
+  margin-top: 10px;
+}
+
+.details.open {
+  max-height: 300px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed #ddd;
+  font-size: 14px;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  padding: 20px;
+}
