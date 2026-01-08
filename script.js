@@ -1,4 +1,4 @@
-function toggle(id) {
-  var row = document.getElementById(id);
-  row.style.display = row.style.display === "table-row" ? "none" : "table-row";
+function toggle(card) {
+  const details = card.querySelector(".details");
+  details.classList.toggle("open");
 }
