@@ -1,80 +1,79 @@
-const data = [
-  {
-    entry: "B",
-    total: 46,
-    image: "B.png",
-    marks: {
-      "Letter Formation": 9,
-      "Composition & Balance": 10,
-      "Readability": 9,
-      "Creativity & Expression": 9,
-      "Overall Finish": 9
-    },
-    comment: "Outstanding balance and depth. A mature and spiritually resonant composition."
-  },
-  {
-    entry: "A",
-    total: 40,
-    image: "A.png",
-    marks: {
-      "Letter Formation": 8,
-      "Composition & Balance": 8,
-      "Readability": 8,
-      "Creativity & Expression": 8,
-      "Overall Finish": 8
-    },
-    comment: "Elegant structure with disciplined strokes and harmonious spacing."
-  },
-  {
-    entry: "C",
-    total: 40,
-    image: "C.png",
-    marks: {
-      "Letter Formation": 9,
-      "Composition & Balance": 9,
-      "Readability": 8,
-      "Creativity & Expression": 8,
-      "Overall Finish": 6
-    },
-    comment: "Strong movement and confidence, slightly reduced finish consistency."
-  }
+const entries = [
+  {e:"B",t:46,m:"🥇 First Place",w:true,c:"Outstanding balance and spiritual depth."},
+  {e:"A",t:40,m:"🥈 Second Place",w:true,c:"Elegant structure and disciplined strokes."},
+  {e:"C",t:40,m:"🥈 Second Place",w:true,c:"Strong movement with confident flow."},
+  {e:"E",t:37,m:"🥉 Third Place",w:true,c:"Balanced form with expressive clarity."},
+  {e:"H",t:37,m:"🥉 Third Place",w:true,c:"Creative use of space and rhythm."},
+
+  {e:"J",t:38,c:"Graceful execution with refined control."},
+  {e:"I",t:35,c:"Clear readability with calm composition."},
+  {e:"M",t:34,c:"Energetic strokes, needs consistency."},
+  {e:"F",t:33,c:"Dynamic form with scope for balance."},
+  {e:"L",t:33,c:"Dense structure, expressive intent."},
+  {e:"K",t:32,c:"Bold strokes, needs proportion control."},
+  {e:"N",t:32,c:"Modern feel with decorative quality."},
+  {e:"D",t:30,c:"Simple and sincere execution."},
+  {e:"G",t:31,c:"Minimalist approach with elegance."}
+];
+
+const criteria = [
+  "Letter Formation",
+  "Composition & Balance",
+  "Readability",
+  "Creativity & Expression",
+  "Overall Finish"
 ];
 
 const cards = document.getElementById("cards");
 
-data.forEach(item => {
-  const card = document.createElement("div");
-  card.className = "card";
+function render(filter) {
+  cards.innerHTML = "";
+  entries
+    .filter(x => filter === "all" || x.w)
+    .forEach(x => {
+      const c = document.createElement("div");
+      c.className = "card" + (x.w ? " winner" : "");
+      c.innerHTML = `
+        <h3>${x.m ? `<span class="medal">${x.m}</span><br>` : ""}
+        Entry ${x.e} · ${x.t}/50</h3>
 
-  const marksHTML = Object.entries(item.marks)
-    .map(([k,v]) => `${k}: <strong>${v}/10</strong>`)
-    .join("<br>");
+        <img src="${x.e}.png">
 
-  card.innerHTML = `
-    <h3>Entry ${item.entry} · <span class="total">${item.total}/50</span></h3>
-    <img src="${item.image}">
-    <button>View detailed marking</button>
-    <div class="details">
-      ${marksHTML}
-      <p><strong>Jury Comment:</strong> ${item.comment}</p>
-    </div>
-  `;
+        <button>View marking</button>
 
-  const btn = card.querySelector("button");
-  const details = card.querySelector(".details");
+        <div class="details">
+          ${criteria.map(k=>`${k}: <strong>/10</strong>`).join("<br>")}
+          <p><strong>Jury note:</strong> ${x.c}</p>
+        </div>
+      `;
 
-  btn.onclick = () => {
-    const open = details.style.display === "block";
-    details.style.display = open ? "none" : "block";
-    btn.textContent = open ? "View detailed marking" : "Hide details";
-  };
+      const btn = c.querySelector("button");
+      const d = c.querySelector(".details");
 
-  cards.appendChild(card);
-});
+      btn.onclick = () => {
+        d.style.display = d.style.display === "block" ? "none" : "block";
+        btn.textContent = d.style.display === "block" ? "Hide marking" : "View marking";
+      };
 
-function goToResults() {
+      cards.appendChild(c);
+    });
+}
+
+function showResults() {
   document.querySelector(".landing").style.display = "none";
+  document.getElementById("nav").classList.remove("hidden");
   document.getElementById("results").classList.remove("hidden");
-  document.querySelector(".jury").classList.remove("hidden");
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("jury").classList.remove("hidden");
+  render("winners");
+}
+
+function switchTab(t) {
+  document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+  event.target.classList.add("active");
+  render(t);
+}
+
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
 }
