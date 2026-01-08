@@ -3,46 +3,45 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allama SC Calligraphy Awards</title>
+<title>Allama S.C. Calligraphy Awards</title>
 
 <link rel="stylesheet" href="style.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- LANDING -->
+<!-- LANDING PAGE -->
 <section class="landing">
   <img src="allama-logo.png" class="logo" alt="Allama Logo">
   <h1>Allama S.C.<br>Calligraphy Awards</h1>
-  <p>Celebrating devotion through art</p>
-  <button onclick="scrollToResults()">View Results</button>
+  <p>Celebrating devotion, discipline, and beauty through Arabic calligraphy</p>
+  <button onclick="goToResults()">View Results</button>
 </section>
 
 <!-- RESULTS -->
-<section id="results">
+<section id="results" class="hidden">
   <h2>Competition Results</h2>
   <div id="cards"></div>
 </section>
 
 <!-- JURY MESSAGE -->
-<section class="jury">
+<section class="jury hidden">
   <div class="jury-card">
-    <img src="jury.png" alt="Jury">
-    <h3>Khaleelullah Chemnad</h3>
+    <img src="jury.jpg" alt="Chief Jury">
+    <h3>Ustadh Ahmad Basheer</h3>
     <span>Chief Jury · Arabic Calligraphy</span>
     <p>
-      It was a pleasure witnessing the sincerity and effort of each participant.
-      May this art continue to elevate hearts and preserve tradition.
+      Each artwork reflected sincerity and effort.  
+      While techniques varied, the spiritual intention was clearly visible.  
+      May this art continue to refine hearts and preserve tradition.
     </p>
   </div>
 
   <div class="thanks">
     <p>
-      Allama S.C. thanks all participants, artists, and supporters
-      for making this competition meaningful and memorable.
+      <strong>Allama S.C.</strong> extends heartfelt gratitude to all participants,
+      volunteers, and supporters who made this competition meaningful and memorable.
     </p>
   </div>
 </section>
