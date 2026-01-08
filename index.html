@@ -3,47 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Allama S.C. Calligraphy Awards</title>
+<title>Nuqtah Award 2026 · Allama S.C.</title>
 
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body>
+<body class="dark">
 
-<!-- LANDING PAGE -->
+<!-- LANDING -->
 <section class="landing">
-  <img src="allama-logo.png" class="logo" alt="Allama Logo">
-  <h1>Allama S.C.<br>Calligraphy Awards</h1>
-  <p>Celebrating devotion, discipline, and beauty through Arabic calligraphy</p>
-  <button onclick="goToResults()">View Results</button>
+  <img src="allama-logo.png" class="logo" alt="Allama S.C.">
+  <h1>Nuqtah Award 2026</h1>
+  <p>Allama S.C. · Arabic Calligraphy Competition</p>
+
+  <div class="actions">
+    <button onclick="showResults()">View Results</button>
+    <button class="toggle" onclick="toggleTheme()">🌙</button>
+  </div>
 </section>
+
+<!-- NAV -->
+<div id="nav" class="hidden">
+  <button class="tab active" onclick="switchTab('winners')">🏆 Winners</button>
+  <button class="tab" onclick="switchTab('all')">📋 Full List</button>
+</div>
 
 <!-- RESULTS -->
 <section id="results" class="hidden">
-  <h2>Competition Results</h2>
   <div id="cards"></div>
 </section>
 
-<!-- JURY MESSAGE -->
-<section class="jury hidden">
+<!-- JURY -->
+<section id="jury" class="hidden">
   <div class="jury-card">
-    <img src="jury.png" alt="Chief Jury">
+    <img src="jury.png" alt="Jury">
     <h3>Khaleelullah Chemnad</h3>
     <span>Chief Jury · Arabic Calligraphy</span>
     <p>
-      Each artwork reflected sincerity and effort.  
-      While techniques varied, the spiritual intention was clearly visible.  
-      May this art continue to refine hearts and preserve tradition.
+      Each entry reflected sincere effort and devotion.
+      While styles differed, the intention behind every work
+      was deeply appreciable. May this art continue to inspire hearts.
     </p>
   </div>
 
-  <div class="thanks">
-    <p>
-      <strong>Allama S.C.</strong> extends heartfelt gratitude to all participants,
-      volunteers, and supporters who made this competition meaningful and memorable.
-    </p>
-  </div>
+  <p class="thanks">
+    With gratitude, <strong>Allama S.C.</strong> thanks all artists,
+    volunteers, and supporters for making the Nuqtah Award 2026
+    a meaningful and memorable celebration of calligraphy.
+  </p>
 </section>
 
 <script src="script.js"></script>
