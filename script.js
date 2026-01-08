@@ -38,17 +38,4 @@ data.forEach(d => {
 
 function scrollToResults(){
   document.getElementById("results").scrollIntoView({behavior:"smooth"});
-}    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-    tab.classList.add("active");
-    render(tab.dataset.tab);
-  };
-});
-
-/* Dark / Light toggle */
-const toggle = document.getElementById("themeToggle");
-toggle.onclick = () => {
-  document.body.classList.toggle("dark");
-  document.body.classList.toggle("light");
-  toggle.textContent =
-    document.body.classList.contains("dark") ? "🌙 Dark" : "☀️ Light";
-};
+}
