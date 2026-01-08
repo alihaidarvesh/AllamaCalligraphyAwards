@@ -14,42 +14,53 @@ const criteria = [
   "Overall Finish"
 ];
 
-const container = document.getElementById("cards");
+const cards = document.getElementById("cards");
 
-data.forEach(item => {
-  const card = document.createElement("div");
-  card.className = "card" + (item.winner ? " winner" : "");
-
-  card.innerHTML = `
-    <div class="top">
-      <div>
-        <div class="entry">Entry ${item.entry}</div>
-        <div class="badge ${item.badge}">${item.award}</div>
-      </div>
-      <div class="score">${item.total}</div>
-    </div>
-
-    <button>View detailed scores</button>
-
-    <div class="details">
-      ${criteria.map((c,i)=>`
-        <div class="row">
-          <span class="key">${c}</span>
-          <span>${item.scores[i]} / 10</span>
+function render(filter) {
+  cards.innerHTML = "";
+  data.filter(d => filter === "all" || d.winner).forEach(item => {
+    const c = document.createElement("div");
+    c.className = "card" + (item.winner ? " winner" : "");
+    c.innerHTML = `
+      <div class="top">
+        <div>
+          <div class="entry">Entry ${item.entry}</div>
+          <div class="badge ${item.badge}">${item.award}</div>
         </div>
-      `).join("")}
-    </div>
-  `;
+        <div class="score">${item.total}</div>
+      </div>
+      <button class="view">View details</button>
+      <div class="details">
+        ${criteria.map((k,i)=>`
+          <div class="row"><span>${k}</span><span>${item.scores[i]}/10</span></div>
+        `).join("")}
+      </div>
+    `;
+    const btn = c.querySelector(".view");
+    const details = c.querySelector(".details");
+    btn.onclick = () => {
+      details.classList.toggle("open");
+      btn.textContent = details.classList.contains("open") ? "Hide details" : "View details";
+    };
+    cards.appendChild(c);
+  });
+}
 
-  const btn = card.querySelector("button");
-  const details = card.querySelector(".details");
+render("winners");
 
-  btn.onclick = () => {
-    details.classList.toggle("open");
-    btn.textContent = details.classList.contains("open")
-      ? "Hide details"
-      : "View detailed scores";
+/* Tabs */
+document.querySelectorAll(".tab").forEach(t => {
+  t.onclick = () => {
+    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+    t.classList.add("active");
+    render(t.dataset.tab);
   };
-
-  container.appendChild(card);
 });
+
+/* Dark / Light toggle */
+const toggle = document.getElementById("themeToggle");
+toggle.onclick = () => {
+  document.body.classList.toggle("dark");
+  document.body.classList.toggle("light");
+  toggle.textContent = document.body.classList.contains("dark") ? "🌙 Dark" : "☀️ Light";
+};
