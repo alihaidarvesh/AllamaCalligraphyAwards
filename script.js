@@ -28,69 +28,72 @@ const criteria = [
 
 const cards = document.getElementById("cards");
 
+/* Render cards */
 function render(filter) {
   cards.innerHTML = "";
-  data
-    .filter(d => filter === "all" || d.winner)
-    .forEach(item => {
-      const c = document.createElement("div");
-      c.className = "card" + (item.winner ? " winner" : "");
 
-      c.innerHTML = `
-        <div class="top">
-          <div>
-            <div class="entry">Entry ${item.entry}</div>
-            ${item.award ? `<div class="badge ${item.badge}">${item.award}</div>` : ""}
+  data.filter(d => filter === "all" || d.winner)
+      .forEach(item => {
+
+    const card = document.createElement("div");
+    card.className = "card" + (item.winner ? " winner" : "");
+
+    card.innerHTML = `
+      <div class="top">
+        <div>
+          <div class="entry">Entry ${item.entry}</div>
+          ${item.award ? `<div class="badge ${item.badge}">${item.award}</div>` : ""}
+        </div>
+        <div class="score">${item.total}</div>
+      </div>
+
+      <div class="artwork">
+        <img src="${item.image}" alt="Calligraphy Entry ${item.entry}" loading="lazy">
+      </div>
+
+      <button class="view">View details</button>
+
+      <div class="details">
+        ${criteria.map((c,i)=>`
+          <div class="row">
+            <span>${c}</span>
+            <span>${item.scores[i]} / 10</span>
           </div>
-          <div class="score">${item.total}</div>
-        </div>
+        `).join("")}
+      </div>
+    `;
 
-        <div class="artwork">
-          <img src="${item.image}" alt="Calligraphy Entry ${item.entry}" loading="lazy">
-        </div>
+    const btn = card.querySelector(".view");
+    const details = card.querySelector(".details");
 
-        <button class="view">View details</button>
+    btn.onclick = () => {
+      details.classList.toggle("open");
+      btn.textContent = details.classList.contains("open")
+        ? "Hide details"
+        : "View details";
+    };
 
-        <div class="details">
-          ${criteria.map((c,i)=>`
-            <div class="row">
-              <span>${c}</span>
-              <span>${item.scores[i]} / 10</span>
-            </div>
-          `).join("")}
-        </div>
-      `;
-
-      const btn = c.querySelector(".view");
-      const details = c.querySelector(".details");
-
-      btn.onclick = () => {
-        details.classList.toggle("open");
-        btn.textContent = details.classList.contains("open")
-          ? "Hide details"
-          : "View details";
-      };
-
-      cards.appendChild(c);
-    });
+    cards.appendChild(card);
+  });
 }
 
-/* default view */
+/* Default tab */
 render("winners");
 
-/* tab switching */
-document.querySelectorAll(".tab").forEach(t => {
-  t.onclick = () => {
-    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
-    t.classList.add("active");
-    render(t.dataset.tab);
+/* Tabs */
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.onclick = () => {
+    document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+    tab.classList.add("active");
+    render(tab.dataset.tab);
   };
 });
 
-/* dark / light toggle */
+/* Dark / Light toggle */
 const toggle = document.getElementById("themeToggle");
 toggle.onclick = () => {
   document.body.classList.toggle("dark");
   document.body.classList.toggle("light");
-  toggle.textContent = document.body.classList.contains("dark") ? "🌙 Dark" : "☀️ Light";
+  toggle.textContent =
+    document.body.classList.contains("dark") ? "🌙 Dark" : "☀️ Light";
 };
