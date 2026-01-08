@@ -3,8 +3,18 @@
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
+  transition: background .3s, color .3s;
+}
+
+/* THEMES */
+body.dark {
   background: radial-gradient(circle at top, #0f172a, #020617);
   color: #e5e7eb;
+}
+
+body.light {
+  background: linear-gradient(180deg, #f8fafc, #e5e7eb);
+  color: #020617;
 }
 
 /* LANDING */
@@ -19,50 +29,80 @@ body {
 }
 
 .logo {
-  width: 90px;
-  margin-bottom: 18px;
+  width: 130px;
+  margin-bottom: 20px;
 }
 
 .landing h1 {
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 800;
 }
 
 .landing p {
-  opacity: .8;
+  opacity: .75;
   margin: 10px 0 22px;
 }
 
-.landing button {
-  padding: 14px 28px;
+.actions {
+  display: flex;
+  gap: 14px;
+}
+
+.actions button {
+  padding: 14px 26px;
   border-radius: 18px;
   border: none;
   font-weight: 700;
-  background: linear-gradient(135deg, #22d3ee, #38bdf8);
-  color: #020617;
   cursor: pointer;
+  background: linear-gradient(135deg,#22d3ee,#38bdf8);
+  color: #020617;
+}
+
+.actions .toggle {
+  width: 54px;
+}
+
+/* NAV */
+#nav {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+}
+
+.tab {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255,255,255,.15);
+  color: inherit;
+}
+
+.tab.active {
+  background: #facc15;
+  color: #020617;
 }
 
 /* RESULTS */
 #results {
-  padding: 40px 16px;
   max-width: 900px;
   margin: auto;
+  padding: 16px;
 }
 
-#results h2 {
-  text-align: center;
-  margin-bottom: 28px;
-}
-
-/* CARD */
 .card {
-  backdrop-filter: blur(18px);
   background: rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
   border-radius: 26px;
   padding: 18px;
   margin-bottom: 22px;
-  box-shadow: 0 22px 55px rgba(0,0,0,.55);
+  box-shadow: 0 22px 55px rgba(0,0,0,.45);
+}
+
+.card.winner {
+  border: 2px solid #facc15;
 }
 
 .card img {
@@ -77,9 +117,8 @@ body {
   font-size: 20px;
 }
 
-.card .total {
-  color: #facc15;
-  font-weight: 700;
+.medal {
+  font-size: 18px;
 }
 
 .card button {
@@ -87,8 +126,8 @@ body {
   padding: 10px 18px;
   border-radius: 14px;
   border: none;
-  background: rgba(255,255,255,.18);
-  color: #fff;
+  background: rgba(255,255,255,.2);
+  color: inherit;
   font-weight: 600;
   cursor: pointer;
 }
@@ -97,20 +136,47 @@ body {
 .details {
   display: none;
   margin-top: 14px;
+  border-top: 1px dashed rgba(255,255,255,.3);
+  padding-top: 12px;
   font-size: 14px;
   line-height: 1.6;
-  opacity: .95;
-  border-top: 1px dashed rgba(255,255,255,.25);
-  padding-top: 12px;
 }
 
 /* JURY */
-.jury {
-  padding: 50px 16px;
+#jury {
+  padding: 40px 16px 60px;
 }
 
 .jury-card {
   max-width: 420px;
+  margin: auto;
+  text-align: center;
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(18px);
+  border-radius: 26px;
+  padding: 26px;
+}
+
+.jury-card img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.jury-card span {
+  font-size: 13px;
+  opacity: .7;
+}
+
+.thanks {
+  max-width: 520px;
+  margin: 26px auto 0;
+  text-align: center;
+  opacity: .85;
+}
+
+.hidden { display: none; }  max-width: 420px;
   margin: auto;
   text-align: center;
   backdrop-filter: blur(18px);
