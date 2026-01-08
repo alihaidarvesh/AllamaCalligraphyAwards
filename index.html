@@ -7,10 +7,18 @@
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="dark">
 <header>
   <h1>Arabic Calligraphy Competition</h1>
-  <p>Official Jury Results & Detailed Evaluation</p>
+  <p>Official Jury Results</p>
+
+  <div class="controls">
+    <div class="tabs">
+      <button class="tab active" data-tab="winners">🏆 Winners</button>
+      <button class="tab" data-tab="all">📋 Full List</button>
+    </div>
+    <button id="themeToggle">🌙 Dark</button>
+  </div>
 </header>
 
 <main id="cards"></main>
